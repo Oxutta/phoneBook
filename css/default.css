@@ -268,3 +268,21 @@ img.right {
 	border: none;
 	color: #F29DAE;
 }
+.group {
+    font-size:14px;
+    color:#bbb;
+}
+.addContact {
+    border:1px solid #492B21;
+    padding:20px 20px 20px 20px;
+    margin-bottom:20px;
+    width:355px;
+}
+.addContact input, .addContact select {
+    float:right;
+}
+input.inputError {
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(255, 0, 39, 0.7);
+    -moz-box-shadow:    0px 0px 4px 0px rgba(255, 0, 39, 0.7);
+    box-shadow:         0px 0px 4px 0px rgba(255, 0, 39, 0.7);
+}

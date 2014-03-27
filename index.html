@@ -1,23 +1,41 @@
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" ng-app="phonecatApp">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="phoneBook">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>Hibiscus by FCT</title>
+    <title>Телефонная книга</title>
     <link href="/css/default.css" rel="stylesheet" type="text/css" />
-    
-    
-    
+    <script src="/lib/angular/angular.js"></script>
+    <script src="/scripts/controllers/controllers.js"></script>
 </head>
-<body ng-controller="PhoneListCtrl">
-
+<body ng-controller="PhoneBookCtrl">
+<h1>Мои контакты ({{(phones | filter:{group:'!' + 'spam'}).length}})</h1>
+<button ng-click="showAdd=true" ng-show="!showAdd">Добавить</button>
+<div class="addContact" ng-show="showAdd">
+    <p>Имя <input type="text" ng-model="fname" class="fname" /></p>
+    <p>Фамилия <input type="text" ng-model="fsurname" /></p>
+    <p>Номер телефона <input type="text" ng-model="fnumber" class="fnumber" /></p>
+    <p>Группа 
+        <select ng-model="fgroup">
+            <option ng-repeat="group in groups" value="{{group}}">{{group}}</option>
+        </select>
+    </p>
+    <button ng-click="addContact()">Сохранить</button>
+</div>
+<p>Поиск <input type="text" ng-model="filterContacts" />
   <ul>
-    <li ng-repeat="phone in phones">
-      {{phone.name}}
-      <p>{{phone.description}}</p>
+    <li ng-repeat="phone in phones | filter:{group:'!' + 'spam'} | filter:filterContacts">
+      <h3>{{phone.name}} {{phone.surname}}</h3>
+      <p>{{phone.number}} <span class="group">({{phone.group}})</span></p>
     </li>
   </ul>
-<script src="/lib/angular/angular.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-route.min.js"></script>
-<script src="/scripts/controllers/controllers.js"></script>
+<h2>Спам ({{(phones | filter:{group:'spam'}).length}})</h2>  
+<p>Поиск <input type="text" ng-model="filterSpam" />
+  <ul>
+    <li ng-repeat="phone in phones | filter:{group:'spam'} | filter:filterSpam">
+      <h3>{{phone.name}} {{phone.surname}}</h3>
+      <p>{{phone.number}}</p>
+    </li>
+  </ul>
+
 </body>
 </html>
