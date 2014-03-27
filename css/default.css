@@ -286,3 +286,6 @@ input.inputError {
     -moz-box-shadow:    0px 0px 4px 0px rgba(255, 0, 39, 0.7);
     box-shadow:         0px 0px 4px 0px rgba(255, 0, 39, 0.7);
 }
+.actions a {
+    margin-right:15px;
+}

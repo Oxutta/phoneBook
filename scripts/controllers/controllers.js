@@ -57,4 +57,59 @@ phoneBookApp.controller('PhoneBookCtrl', function($scope) {
     
         $scope.showAdd = false;
     }
+    
+    $scope.deleteContact = function(item) {
+        for (var i in $scope.phones) {
+            if ($scope.phones[i] === item) {
+                $scope.phones.splice(i,1);
+                break;
+            }
+        }
+    }
+    
+    $scope.toSpam = function(item) {
+        for (var i in $scope.phones) {
+            if ($scope.phones[i] === item) {
+                $scope.phones[i].group = 'spam';
+                break;
+            }
+        }
+    }
+    $scope.notSpam = function(item) {
+        for (var i in $scope.phones) {
+            if ($scope.phones[i] === item) {
+                $scope.phones[i].group = '';
+                break;
+            }
+        }
+    }
+    
+    
 });
+
+function phonesEditController($scope) {
+    $scope.enableEdit = false;
+    
+    $scope.editContact = function() {
+        $scope.enableEdit = true;
+        this.fname = this.phone.name;
+        this.fsurname = this.phone.surname;
+        this.fnumber = this.phone.number;
+        this.fgroup = this.phone.group;
+    }
+    $scope.saveContact = function() {
+        if (this.fname == '' || this.fnumber == '') {
+            //this.querySelector('.fname').classList.add('inputError');
+            return false;
+        }
+        this.phone.name = this.fname;
+        this.phone.surname = this.fsurname;
+        this.phone.number = this.fnumber;
+        this.phone.group = this.fgroup;
+        
+        $scope.enableEdit = false;
+    }
+    $scope.cancelContact = function() {
+        $scope.enableEdit = false;
+    }
+}

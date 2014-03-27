@@ -9,7 +9,7 @@
 </head>
 <body ng-controller="PhoneBookCtrl">
 <h1>Мои контакты ({{(phones | filter:{group:'!' + 'spam'}).length}})</h1>
-<button ng-click="showAdd=true" ng-show="!showAdd">Добавить</button>
+<button ng-click="showAdd=true" ng-hide="showAdd">Добавить</button><br /><br />
 <div class="addContact" ng-show="showAdd">
     <p>Имя <input type="text" ng-model="fname" class="fname" /></p>
     <p>Фамилия <input type="text" ng-model="fsurname" /></p>
@@ -20,12 +20,33 @@
         </select>
     </p>
     <button ng-click="addContact()">Сохранить</button>
+    <button ng-click="showAdd=false">Отмена</button>
 </div>
 <p>Поиск <input type="text" ng-model="filterContacts" />
   <ul>
     <li ng-repeat="phone in phones | filter:{group:'!' + 'spam'} | filter:filterContacts">
-      <h3>{{phone.name}} {{phone.surname}}</h3>
-      <p>{{phone.number}} <span class="group">({{phone.group}})</span></p>
+      <div ng-controller="phonesEditController">  
+          <div ng-hide="enableEdit">
+              <h3>{{phone.name}} {{phone.surname}}</h3>
+              <p>{{phone.number}} <span class="group">({{phone.group}})</span></p>
+          </div>
+          <div ng-show="enableEdit">
+            <h3><input type="text" ng-model="fname" class="fname" placeholder="Имя" />
+            <input type="text" ng-model="fsurname" class="fsurname" placeholder="Фамилия" /></h3>
+            <p><input type="text" ng-model="fnumber" class="fnumber" placeholder="Номер телефона" />
+                <select ng-model="fgroup">
+                    <option ng-repeat="group in groups" value="{{group}}">{{group}}</option>
+                </select>
+            </p>     
+          </div>
+          <div class="actions">
+            <a href="javascript:void(0)" ng-click="editContact()" ng-hide="enableEdit">Редактировать</a>
+            <a href="javascript:void(0)" ng-click="saveContact()" ng-show="enableEdit">Сохранить</a>
+            <a href="javascript:void(0)" ng-click="cancelContact()" ng-show="enableEdit">Отмена</a>
+            <a href="javascript:void(0)" ng-click="deleteContact(phone)">Удалить</a>
+            <a href="javascript:void(0)" ng-click="toSpam(phone)">В спам</a>
+          </div>
+      </div>
     </li>
   </ul>
 <h2>Спам ({{(phones | filter:{group:'spam'}).length}})</h2>  
@@ -34,6 +55,10 @@
     <li ng-repeat="phone in phones | filter:{group:'spam'} | filter:filterSpam">
       <h3>{{phone.name}} {{phone.surname}}</h3>
       <p>{{phone.number}}</p>
+      <div class="actions">
+        <a href="javascript:void(0)" ng-click="deleteContact(phone)">Удалить</a>
+        <a href="javascript:void(0)" ng-click="notSpam(phone)">Не спам</a>
+      </div>
     </li>
   </ul>
 
