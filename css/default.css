@@ -1,7 +1,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	/*background: #FFFFFF url(../images/img01.jpg) repeat-x;*/
+	background: #FFFFFF url(../images/img01.jpg) repeat-x;
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	font-size: 13px;
 	color: #7F6A63;
@@ -102,6 +102,9 @@ img.right {
 	border: none;
 	text-decoration: none;
 	color: #FAE6D4;
+}
+#header h1 a:hover {
+    text-decoration:none;
 }
 
 #header a:hover {
@@ -288,4 +291,15 @@ input.inputError {
 }
 .actions a {
     margin-right:15px;
+}
+.login {
+    margin:30px 0;
+}
+.login input {
+    padding:5px;
+    margin-bottom:11px;
+    font-size:13px;
+}
+.login button {
+    padding:3px 12px;
 }
