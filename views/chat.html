@@ -1,1 +1,25 @@
 <h2>Hello, {{login}}</h2>
+<div class="div_messages">
+    <div id="all_messages">
+        <ul>
+            <li ng-repeat="message in allMessages" class="{{message.from}}_message" ng-controller="messageController">
+                <div class="message_text">{{message.text}}</div>
+                <div ng-hide="showEditedMes">
+                    <div ng-if="message.status == ''" class="not_check" ng-click="check()"></div>
+                    <div ng-if="message.status == 'check'" class="check"></div>
+                    <div ng-if="message.from == 'friend'" ng-click="showEdit()" class="edit" ng-show="message.status != 'check'"></div>
+                </div>
+                <div class="clr"></div>
+                <div class="edit_panel" ng-show="showEditPanel">
+                    <div class="fix"><button ng-click="fix($event)">Fix</button></div>
+                    <textarea ng-model="message.correctMessage" focus="showEditPanel"></textarea>
+                </div>
+                <div class="edited_message" ng-show="showEditedMes">{{message.correctMessage}}</div>
+                <div class="clr"></div>
+            </li>
+        </ul>
+    </div>
+    <textarea ng-change="typingMes()" id="new_message" ng-model="newMessage"></textarea>
+    <button class="button" ng-click="sendMessage()">Отправить</button>
+    <div class="clr"></div>
+</div>

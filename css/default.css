@@ -284,7 +284,7 @@ img.right {
 .addContact input, .addContact select {
     float:right;
 }
-input.inputError {
+.inputError {
     -webkit-box-shadow: 0px 0px 4px 0px rgba(255, 0, 39, 0.7);
     -moz-box-shadow:    0px 0px 4px 0px rgba(255, 0, 39, 0.7);
     box-shadow:         0px 0px 4px 0px rgba(255, 0, 39, 0.7);
@@ -300,6 +300,109 @@ input.inputError {
     margin-bottom:11px;
     font-size:13px;
 }
-.login button {
+button {
     padding:3px 12px;
+    cursor:pointer;
+}
+#all_messages {
+    width:500px;height:400px;
+    padding:20px;
+    overflow-y:auto;
+    border:1px solid #939292;
+    margin-bottom:20px;
+}
+#new_message {
+    width:390px;
+    height:50px;
+    float:left;
+    padding:10px 20px;
+    border:1px solid #939292;
+}
+.div_messages {
+    width:544px;
+}
+.div_messages .button {
+    float:right;
+    margin:0;
+}
+.clr {
+    clear:both;
+}
+#all_messages ul {
+    margin:0;padding:0;
+}
+#all_messages ul li {
+    display:block;
+    margin-bottom:11px;
+}
+#all_messages .message_text {
+    padding:5px 10px;
+    width:200px;
+    border-radius:4px;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    -webkit-box-shadow: 1px 1px 3px 0px rgba(46, 0, 0, 0.5);
+    -moz-box-shadow:    1px 1px 3px 0px rgba(46, 0, 0, 0.5);
+    box-shadow:         1px 1px 3px 0px rgba(46, 0, 0, 0.5);
+    word-wrap: break-word;
+}
+#all_messages ul li.friend_message .message_text {
+    float:right;
+}
+#all_messages .message_text.editedMes {
+    background-color:#fee0d9;
+}
+#all_messages ul li .not_check, #all_messages ul li .check, #all_messages ul li .edit {
+    width:20px;
+    height:18px;
+    background:url(/images/messages/check_mes.png) no-repeat 0 -23px;
+    float:right;
+    margin:10px 15px 0 0;
+    cursor:pointer;
+}
+#all_messages ul li .check { 
+    background-position:0 0;
+}
+#all_messages ul li .edit { 
+    background-position:-20px 0;
+    margin-right:5px;
+}
+#all_messages .edit_panel,#all_messages  .edited_message {
+    float:right;
+    padding:5px 10px;
+    width:200px;
+    border-radius:4px;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    -webkit-box-shadow: 1px 1px 3px 0px rgba(46, 0, 0, 0.5);
+    -moz-box-shadow:    1px 1px 3px 0px rgba(46, 0, 0, 0.5);
+    box-shadow:         1px 1px 3px 0px rgba(46, 0, 0, 0.5);
+    background-color:#e3ffe9;
+    margin-top:10px;
+    position:relative;
+}
+#all_messages  .edited_message {
+    margin-top:3px;
+}
+#all_messages .edit_panel .fix {
+    position:absolute;
+    top:-2px;left:-49px;
+}
+#all_messages .edit_panel .fix button {
+    padding:3px 5px;
+}
+textarea {
+    font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size:1em;
+    resize:none;
+    outline:none;
+}
+#all_messages .edit_panel textarea {
+    color:#7F6A63;
+    border:none;
+    background-color:transparent;
+    margin:0;
+    width:200px;
+    padding:0;
+    word-wrap: break-word;
 }
